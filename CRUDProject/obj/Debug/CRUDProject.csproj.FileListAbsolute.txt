@@ -35,3 +35,4 @@ C:\Users\Pc\Desktop\Proyectos\CRUDProject\CRUDProject\obj\Debug\CRUDProject.cspr
 C:\Users\Pc\Desktop\Proyectos\CRUDProject\CRUDProject\obj\Debug\CRUDProject.exe
 C:\Users\Pc\Desktop\Proyectos\CRUDProject\CRUDProject\obj\Debug\CRUDProject.pdb
 C:\Users\Pc\Desktop\Proyectos\CRUDProject\CRUDProject\obj\Debug\CRUDProject.frmTest.resources
+C:\Users\Pc\Desktop\Proyectos\CRUDProject\CRUDProject\obj\Debug\CRUDProject.Form1.resources
