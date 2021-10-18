@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CRUDProject
 {
@@ -14,29 +15,50 @@ namespace CRUDProject
         public string _descriptionP { get; set; }
 
 
-        public Project()
+       
+
+        //instancias de la clase Crud
+        private Crud crud = new Crud();
+
+        //metodo para retornar los registros de la tabla project
+        public MySqlDataReader getAllProjects()
         {
-            
+            string query = "SELECT projectId,startProject,finishProject,descriptionProject FROM project";
+
+            //llamado al metodo select de la clase Crud
+            return crud.select(query);
+        }
+        
+        public Boolean newEditProject(string action)
+        {
+            if (action == "new" )
+            {
+                string query = "INSERT INTO project(startProject,finishProject,descriptionProject) VALUES" +
+                    "('" + _startP + "', '" + _finishP + "', '" + _descriptionP + "')";
+                crud.executeQuery(query);
+                return true;
+            }
+            else if (action == "edit")
+            {
+                string query = "UPDATE project SET" +
+                    "startProject='" + _startP +
+                    "',finishProject='" + _finishP +
+                    "',descriptionProject='" + _descriptionP + "'" +
+                    "WHERE "+ 
+                    "projectId='" + _projectsId + "'";
+                crud.executeQuery(query);
+                return true;
+            }
+            return false;
+
         }
 
-        public Project(int projectsId, string start, string finish, string description)
-        {
-            _projectsId = projectsId;
-            _startP = start;
-            _finishP = finish;
-            _descriptionP = description;
-        }
 
-        public string getProjectInfo()
+        public Boolean deleteProject()
         {
-            return " ID: " + _projectsId + " Inicio: " + _startP +
-                " Final: " + _finishP + " Descripcion: " + _descriptionP;
-        }
-
-        public string getInfo()
-        {
-            return " ID: " + _projectsId + " Inicio: " + _startP +
-                " Final: " + _finishP + " Descripcion: " + _descriptionP;
+            string query = "DELETE FROM project WHERE projectId='" + _projectsId + "'";
+            crud.executeQuery(query);
+            return true;
         }
     }
 
